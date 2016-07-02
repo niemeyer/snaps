@@ -1,0 +1,73 @@
+name: mongo33
+version: 3.3.9
+summary: MongoDB document-oriented database
+
+description: |
+    MongoDB is a high-performance, open source, schema-free
+    document-oriented data store that's easy to deploy, manage
+    and use. It's network accessible, written in C++ and offers
+    the following features:
+
+       * Collection oriented storage - easy storage of object-style data
+       * Full index support, including on inner objects
+       * Query profiling
+       * Replication and fail-over support
+       * Efficient storage of binary data including large objects (e.g. videos)
+       * Auto-sharding for cloud-level scalability
+
+    High performance, scalability, and reasonable depth of functionality
+    are the goals for the project.
+
+confinement: strict
+
+apps:
+    mongo33:
+        command: bin/run.sh mongo
+
+    mongod:
+        command: bin/run.sh mongod --port=33017 --smallfiles --noprealloc
+        daemon: simple
+
+    d:
+        command: bin/run.sh mongod
+    s:
+        command: bin/run.sh mongos
+
+    export:
+        command: bin/run.sh mongoexport
+    import:
+        command: bin/run.sh mongoimport
+    dump:
+        command: bin/run.sh mongodump
+    restore:
+        command: bin/run.sh mongorestore
+
+    top:
+        command: bin/run.sh mongotop
+    stat:
+        command: bin/run.sh mongostat
+    perf:
+        command: bin/run.sh mongoperf
+
+    files:
+        command: bin/run.sh mongofiles
+    sniff:
+        command: bin/run.sh mongosniff
+    oplog:
+        command: bin/run.sh mongooplog
+
+plugs:
+    home:
+    network:
+    network-bind:
+
+parts:
+    mongodb:
+        source: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.3.9.tgz
+        plugin: dump
+        stage-packages:
+            - libssl1.0.0
+
+    content:
+        source: ../content
+        plugin: dump
