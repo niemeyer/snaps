@@ -1,0 +1,7 @@
+*/*/prime
+*/*/stage
+*/*/snap
+*/*/parts
+*.snap
+*.swp
+plugins/__pycache__
