@@ -1,0 +1,28 @@
+name: mup-plugins
+version: 2016.07.01
+summary: mup IRC and Telegram bot - plugins side
+description: mup IRC and Telegram bot - plugins side
+
+confinement: strict
+
+plugs:
+    network:
+    network-bind:
+
+apps:
+    mup-plugins:
+        command: bin/mup.sh
+
+    daemon:
+        command: bin/mup.sh
+        daemon: simple
+
+parts:
+    mup:
+        plugin: go
+        go-packages:
+            - gopkg.in/mup.v0/cmd/mup
+
+    content:
+        plugin: dump
+        source: ../content
