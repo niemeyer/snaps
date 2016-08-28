@@ -1,0 +1,19 @@
+name: tanidvr
+version: 1.4.1
+summary: Tool for DVRs and IP cameras based on the DVR-IP protocol.
+description: |
+    Tool for DVRs and IP cameras based on the DVR-IP protocol.
+
+confinement: strict
+
+plugs:
+    network:
+
+apps:
+    tanidvr:
+        command: bin/tanidvr
+
+parts:
+    tanidvr:
+        plugin: autotools
+        source: http://downloads.sourceforge.net/project/tanidvr/TaniDVR/tanidvr-1.4.1/tanidvr-1.4.1.tar.bz2
